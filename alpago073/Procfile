@@ -1,0 +1,1 @@
+web: gunicorn alpago073.wsgi
