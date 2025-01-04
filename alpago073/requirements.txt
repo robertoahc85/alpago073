@@ -7,3 +7,4 @@ whitenoise==6.8.2
 gunicorn==21.2.0
 psycopg2-binary==2.9.9  # Añadir esta línea
 python-decouple==3.8
+django-multiselectfield
