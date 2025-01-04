@@ -46,10 +46,10 @@ chmod -R 755 staticfiles/
 # Realizar migraciones
 python manage.py migrate
 
-# Crear superusuario si es necesario (opcional)
-if [ "$DJANGO_SUPERUSER_USERNAME" ] && [ "$DJANGO_SUPERUSER_PASSWORD" ] ; then
-    python manage.py createsuperuser \
-        --noinput \
-        --username $DJANGO_SUPERUSER_USERNAME \
-        --email $DJANGO_SUPERUSER_EMAIL
-fi
+# # Crear superusuario si es necesario (opcional)
+# if [ "$DJANGO_SUPERUSER_USERNAME" ] && [ "$DJANGO_SUPERUSER_PASSWORD" ] ; then
+#     python manage.py createsuperuser \
+#         --noinput \
+#         --username $DJANGO_SUPERUSER_USERNAME \
+#         --email $DJANGO_SUPERUSER_EMAIL
+# fi
