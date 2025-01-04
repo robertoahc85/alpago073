@@ -22,6 +22,7 @@ mkdir -p staticfiles
 # Copiar archivos admin manualmente (por si acaso)
 python manage.py collectstatic --noinput
 
+
 # Verificar la recolección de estáticos
 echo "Verificando archivos estáticos..."
 ls -la staticfiles/admin/css/
