@@ -1,50 +1,38 @@
-#!/usr/bin/env bash
+!/usr/bin/env bash
 # build.sh
 
-# Salir en caso de error
+echo "Building the project..."
 set -o errexit
 
 # Actualizar pip
 python -m pip install --upgrade pip
 
-# Instalar dependencias del sistema para psycopg2
-apt-get update && apt-get install -y \
-    postgresql \
-    postgresql-contrib \
-    python3-dev \
-    libpq-dev
-
-# Instalar dependencias de Python
+# Instalar dependencias
 pip install -r requirements.txt
-
-# Recolectar archivos estáticos
-python manage.py collectstatic --no-input
-
-# Realizar migraciones
-python manage.py migrate
 
 # Crear directorio static si no existe
 mkdir -p static
 
-# Limpiar staticfiles si existe
+# Limpiar staticfiles
 rm -rf staticfiles/*
 
-# Recolectar archivos estáticos con -c (clear) y --noinput
-python manage.py collectstatic --clear --noinput
+# Asegurarse de que el directorio staticfiles existe
+mkdir -p staticfiles
 
-# Verificar que los archivos se copiaron
-echo "Contenido de staticfiles:"
-ls -la staticfiles/
+# Copiar archivos admin manualmente (por si acaso)
+python manage.py collectstatic --noinput
 
-# Verificar archivos admin específicamente
-echo "Contenido de archivos admin:"
+# Verificar la recolección de estáticos
+echo "Verificando archivos estáticos..."
 ls -la staticfiles/admin/css/
 
 # Establecer permisos
+echo "Estableciendo permisos..."
 chmod -R 755 staticfiles/
 
 # Realizar migraciones
-python manage.py migrate
+echo "Aplicando migraciones..."
+python manage.py migrate --noinput
 
 # # Crear superusuario si es necesario (opcional)
 # if [ "$DJANGO_SUPERUSER_USERNAME" ] && [ "$DJANGO_SUPERUSER_PASSWORD" ] ; then
