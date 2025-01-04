@@ -5,3 +5,5 @@ sqlparse==0.5.3
 typing_extensions==4.12.2
 whitenoise==6.8.2
 gunicorn==21.2.0
+psycopg2-binary==2.9.9  # Añadir esta línea
+dj-database-url==2.1.0  # Añadir esta línea
